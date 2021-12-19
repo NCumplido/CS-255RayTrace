@@ -23,7 +23,7 @@ public class Example extends JFrame {
     BufferedImage image;
     JSlider val_slider; //slider example
     Container container = getContentPane();
-    File slectedFile;
+    File selectedFile;
 
     /*
         This function sets up the GUI and reads an image
@@ -141,7 +141,8 @@ public class Example extends JFrame {
                         image_icon.setIcon(new ImageIcon(image));
                 }else if (event.getSource()==open_file_Button) {
                         FileHelper fileChooser = new FileHelper(container);
-                        slectedFile = fileChooser.openDialogue();
+                        selectedFile = fileChooser.openDialogue();
+                        InitialiseImage(selectedFile);
                         }
          }
     }
@@ -255,6 +256,16 @@ public class Example extends JFrame {
             return image;
     }
 
+    public void InitialiseImage(File image_file){
+        try {
+                image = ImageIO.read(image_file);
+                image_icon.setIcon(new ImageIcon(image));
+        } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+        }
+
+    }
 
     public static void main(String[] args) throws IOException {
  

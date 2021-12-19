@@ -13,7 +13,7 @@ public class FileHelper {
 
     public File openDialogue(){
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dirw"))); 
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir"))); 
         //Desired path: C:\Users\Nich\Documents\Projects\CS-255RayTrace\raytrace.jpg
         int result = fileChooser.showOpenDialog(container);
         if (result == JFileChooser.APPROVE_OPTION) {
