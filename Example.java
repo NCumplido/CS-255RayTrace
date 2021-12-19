@@ -13,11 +13,17 @@ import java.lang.Math.*;
 // I won't give extra marks for that though.
 public class Example extends JFrame {
 
-    JButton invert_button, slow_gamma_button, fast_gamma_button, correlate_button, equal_button;
+    JButton invert_button, 
+    slow_gamma_button, 
+    fast_gamma_button, 
+    correlate_button, 
+    equal_button,
+    open_file_Button;
     JLabel image_icon;
     BufferedImage image;
-	JSlider val_slider; //slider example
-
+    JSlider val_slider; //slider example
+    Container container = getContentPane();
+    File slectedFile;
 
     /*
         This function sets up the GUI and reads an image
@@ -31,7 +37,7 @@ public class Example extends JFrame {
 
         // Set up the simple GUI
         // First the container:
-        Container container = getContentPane();
+        //Container container = getContentPane();
         container.setLayout(new FlowLayout());
         
         // Then our image (as a label icon)
@@ -55,6 +61,10 @@ public class Example extends JFrame {
         // Correlate button
         correlate_button = new JButton("Correlate");
         container.add(correlate_button);
+
+        //Open file button
+        open_file_Button = new JButton("Open file");
+        container.add(open_file_Button);
 		
 		//Slider example
 		val_slider = new JSlider(0,100);
@@ -78,7 +88,8 @@ public class Example extends JFrame {
         fast_gamma_button.addActionListener(handler);
         correlate_button.addActionListener(handler);
         equal_button.addActionListener(handler);
-		val_slider.addChangeListener(handler);
+        open_file_Button.addActionListener(handler);
+	val_slider.addChangeListener(handler);
         // ... and display everything
         pack();
         setLocationRelativeTo(null);
@@ -128,7 +139,10 @@ public class Example extends JFrame {
 						
                         // Update image
                         image_icon.setIcon(new ImageIcon(image));
-				}
+                }else if (event.getSource()==open_file_Button) {
+                        FileHelper fileChooser = new FileHelper(container);
+                        slectedFile = fileChooser.openDialogue();
+                        }
          }
     }
 
