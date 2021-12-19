@@ -1,0 +1,149 @@
+I'll update this with the lecture schedule as we progress through term.
+
+Link for booking your viva time:
+https://www.eventbrite.co.uk/e/graphics-vivas-tickets-31713324407
+
+###########
+
+Lecture 1
+
+I handed out the first half of the course notes.
+
+I handed out the assignment.
+
+I showed Photoshop. The overall aim was to get across the fact that we will be learning algorithms and not how to use packages.
+
+In Photoshop, I showed:
+
+The RGB eyedropper tool (to explain RGB colour), curves, filters etc.
+
+For the assignment, I talked through the requirements, submission procedure and aims in great detail.
+
+I introduced the assignment framework, and went through the code line by line to introduce the various features, and discuss how the assignment could be implemented within the framework.
+
+I recommended a work schedule, indicated that students should download and familiarise themselves with the code template immediately, and get gamma correction working within the week.
+
+#############
+
+Lecture 2 (Given by Ric)
+
+Ric covered gamma correction, which is the first part of the assignment.
+
+He also went through the code again, line by line.
+
+############
+
+Lecture 3
+
+Idea of mappings introduced. Gamma correction is a mapping. Discussed coding again. Contrast stretching.
+
+https://en.wikipedia.org/wiki/Gamma_correction
+
+
+#############
+
+Lecture 4 will be histrograms and histogram equalisation
+
+https://en.wikipedia.org/wiki/Histogram
+https://en.wikipedia.org/wiki/Image_histogram
+https://en.wikipedia.org/wiki/Histogram_equalization
+
+#############
+
+Lecture 5
+
+Cross correlation introduction and algorithm. The Gaussian spreadsheet is used in the lecture to describe how to create the filters.
+Spatial Linear Filtering - going through the main stages of the cross correlation algorithm. I also discussed filters: size of filters, how they are derived, high and low pass filters. Filters within photoshop were also shown so we have the context of the algorithm.
+
+#############
+
+Lecture 6 (20/2/2017)
+
+Recap of all 4 parts of the assignment.
+
+#############
+
+Lecture 7
+More about the theory of cross correlation. In particular how we can derive an edge detection algorithm from finding the peak in the first derivative or the zero-crossing in the 2nd derivative. Did first derivative in detail.
+
+#############
+
+Lecture 8
+Second derivative.
+Image denoising.
+Template matching.
+
+#############
+
+Lecture 9 (27/2/2017)
+Image resizing.
+Linear interpolation (including equation). Bilinear interpolation. Image resizing as an example. Nearest neighbour vs. bilinear vs. bicubic interpolation.
+
+#############
+
+Lecture 10
+Error diffusion dither
+
+#############
+
+Lecture 11
+Halftoning
+
+#############
+
+Lecture 12 (6/3/2017)
+Cross correlation revision
+
+#############
+
+Lecture 13
+I handed out the 2nd half of the notes - they are already on blackboard.
+I didn't have quite enough copies - I will bring more on Thursday, then put them in the course tray outside Talbot 043.
+
+Object representation - implicit, parametric, triangles.
+
+#############
+
+Lecture 14
+Ray tracing
+
+#############
+
+Lecture 15 (13/3/2017)
+Ray tracing - ray/sphere intersection equation, parallel coding, recursive ray tracing
+
+#############
+
+Lecture 16
+Bounding volumes, hierarchical bounding volumes, octrees, kdtree. Example on laptop.
+
+#############
+
+Lecture 17
+Illumination and shading
+
+#############
+(20/3/2017 cancelled)
+#############
+
+Plan:
+Lecture 18 (21/3/2017)
+Anti-aliasing and sampling patterns
+
+#############
+
+Lecture 19
+MIP+Volume data
+Colour models
+
+#############
+
+Lecture 20 (27/3/2017)
+We agreed (almost unanimously) that since the course is complete, I would do the recap in the previous lecutre and overrun the time slightly. Then we do revision after Easter.
+So this lecture, and all further lectures this term are cancelled.
+
+#############
+
+Revision lectures after Easter - starting 2/5/2017
+
+

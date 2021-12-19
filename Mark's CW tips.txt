@@ -1,0 +1,85 @@
+CS255 Feedback
+
+General information about histograms
+
+I moderated the Histogram question of the assignment to make sure marks are consistent.
+
+There are several issues with the solution provided by students.
+
+Ideally the solution would be to create the histograms for red, green, blue and brightness once. For the brightness you should take each individual pixel value e.g. grey=(r+g+b)/3, and then e.g. histogram[grey][3]++
+
+Many students have done
+
+brightness[i] = Math.round((red[i] + green[i] + blue[i]) /3);
+
+where red green and blue are [256] array and are the histograms. This is different to above, and wrong.
+
+Some students doing the latter have been marked correct in the viva because it is difficult to detect without checking the code. I am now rectifying that by reducing the marks.
+
+Another common approach is to use one of the histograms (e.g., red) in histogram equalisation (rather than brightness as stored in histogram[grey][3]). Marks are being reduced in that area if not already done so at the viva.
+
+Another major problem is that students are creating an array which is the same size as the image, then copying the image into that array, then relying on the chartfactory.createHistogram function to create the histogram for you, and then display that. This approach will be set to zero marks because you are not displaying *your* calculated histogram. I note this is the approach of several tutorials if you google jfreecharts and histograms. I also reduced the marks for displaying in this case.
+
+A more acceptable solution that demonstrates understanding is to use the histograms you created above, then use the chartfactory barchart or createXYLineChart function to create the barchart from your calculated data. Students writing a drawing function from scratch (some did) are to be admired, and if I did your viva you know this already.
+
+Name Nicholas Cumplido                       Number 826488
+
+Has gamma correction been implemented correctly? [12 marks]
+12
+Can a value for gamma be entered by some interface? [12 marks]
+12
+ 
+Has the fast version been implemented correctly? [11 marks]
+Some code, but not working (looks OK)
+2
+Questions
+ 
+26
+Has contrast stretching been implemented correctly? [11 marks]
+11
+Can a values for (r1, s1) and (r2, s2) be entered by a simple interface? [11 marks]
+11
+Can a values for (r1, s1) and (r2, s2) be entered by a complex interface? [13 marks]
+0
+Questions
+ 
+ 
+22
+ 
+Has histogram calculation been implemented correctly? [7 marks]
+Some incorrect code - the bit that works was mine
+0
+Can the histogram be displayed? [7 marks]
+ 
+ 
+0
+ 
+Can this be done for each channel and brightness? [7 marks]
+ 
+ 
+0
+ 
+Can the histogram be displayed using a fancy interface? [9 marks]
+ 
+ 
+0
+Has histogram equalisation been implemented correctly? [10 marks]
+ 
+0
+ 
+Questions
+ 
+ 
+0
+ 
+Has cross-correlation been implemented correctly? Hard coding a 5x5 Laplacian is all that is needed for this assignment. Edges may be set to black. [40 marks]
+Some code, but not working (as discussed in the viva)
+10
+Questions
+ 
+10
+ 
+
+Marks out of 300 = 116/300
+
+Percentage = 38.666666666666664%
