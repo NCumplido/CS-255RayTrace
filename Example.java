@@ -12,28 +12,32 @@ import java.lang.Math.*;
 // I won't give extra marks for that though.
 public class Example extends JFrame {
 
-    JButton invert_button, 
+    JButton 
+    invert_button, 
     slow_gamma_button, 
     fast_gamma_button, 
     correlate_button, 
     equal_button,
-    open_file_Button;
+    open_file_Button,
+    btn_reset_image;
     JLabel image_icon;
     BufferedImage image;
     JSlider val_slider;
     Container container = getContentPane();
     File selectedFile;
 
+    final String DEFAULT_IMAGE_NAME = "raytrace.jpg";
+
     /*
         This function sets up the GUI and reads an image
     */
     public void Example() throws IOException {
         
-        File image_file = new File("raytrace.jpg");
+        container.setLayout(new FlowLayout());
+
+        File image_file = new File(DEFAULT_IMAGE_NAME);
         
         image = ImageIO.read(image_file);
-
-        container.setLayout(new FlowLayout());
         
         image_icon=new JLabel(new ImageIcon(image));
         container.add(image_icon);
@@ -51,6 +55,9 @@ public class Example extends JFrame {
         
         correlate_button = new JButton("Correlate");
         container.add(correlate_button);
+
+        btn_reset_image = new JButton("Reset Image");
+        container.add(btn_reset_image);
 
         open_file_Button = new JButton("Open file");
         container.add(open_file_Button);
@@ -74,6 +81,7 @@ public class Example extends JFrame {
         correlate_button.addActionListener(handler);
         equal_button.addActionListener(handler);
         open_file_Button.addActionListener(handler);
+        btn_reset_image.addActionListener(handler);
 	val_slider.addChangeListener(handler);
         // ... and display everything
         pack();
@@ -124,11 +132,13 @@ public class Example extends JFrame {
 						
                         // Update image
                         image_icon.setIcon(new ImageIcon(image));
-                }else if (event.getSource()==open_file_Button) {
+                } else if (event.getSource()==open_file_Button) {
                         FileHelper fileChooser = new FileHelper(container);
                         selectedFile = fileChooser.openDialogue();
                         ChangeImage(selectedFile);
-                        }
+                } else if (event.getSource()==btn_reset_image) {
+                        ResetImage();
+                }
          }
     }
 
@@ -148,6 +158,17 @@ public class Example extends JFrame {
             return ((DataBufferByte) DB).getData();
     }
 
+    public void ResetImage(){
+        File image_file = new File(DEFAULT_IMAGE_NAME);
+        try {
+                image = ImageIO.read(image_file);
+        } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+        }
+        //image_icon=new JLabel(new ImageIcon(image));
+        image_icon.setIcon(new ImageIcon(image));
+    }
 
     public BufferedImage Equalise(BufferedImage image) {
             //Get image dimensions, and declare loop variables
