@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.event.*;
 import java.lang.Math.*;
-//Insert your name, student number and the declaration that "This work is my own, individual effort."
 
 // OK this is not best practice - maybe you'd like to extend
 // the BufferedImage class for the image processing operations?
@@ -21,7 +20,7 @@ public class Example extends JFrame {
     open_file_Button;
     JLabel image_icon;
     BufferedImage image;
-    JSlider val_slider; //slider example
+    JSlider val_slider;
     Container container = getContentPane();
     File selectedFile;
 
@@ -29,47 +28,35 @@ public class Example extends JFrame {
         This function sets up the GUI and reads an image
     */
     public void Example() throws IOException {
-        // File name is hardcoded here - much nicer to have a dialog
+        
         File image_file = new File("raytrace.jpg");
         
-        // Open the file and read it into a BufferedImage
         image = ImageIO.read(image_file);
 
-        // Set up the simple GUI
-        // First the container:
-        //Container container = getContentPane();
         container.setLayout(new FlowLayout());
         
-        // Then our image (as a label icon)
         image_icon=new JLabel(new ImageIcon(image));
         container.add(image_icon);
  
-        // Then the invert button
         invert_button = new JButton("Invert");
         container.add(invert_button);
 
-        // Then the equalize button
         equal_button = new JButton("Equalize");
         container.add(equal_button);
         
-        // Gamma button
         slow_gamma_button = new JButton("Slow Gamma");
         container.add(slow_gamma_button);
         fast_gamma_button = new JButton("Fast Gamma");
         container.add(fast_gamma_button);
         
-        // Correlate button
         correlate_button = new JButton("Correlate");
         container.add(correlate_button);
 
-        //Open file button
         open_file_Button = new JButton("Open file");
         container.add(open_file_Button);
 		
-		//Slider example
 		val_slider = new JSlider(0,100);
 		container.add(val_slider);
-		//Add labels
 		val_slider.setMajorTickSpacing(50);
 		val_slider.setMinorTickSpacing(10);
 		val_slider.setPaintTicks(true);
@@ -79,10 +66,8 @@ public class Example extends JFrame {
 		//for documentation (e.g. how to get the value, how to display vertically if you want)
         		
 
-        // Now all the handlers
         GUIEventHandler handler = new GUIEventHandler();
 
-        // Button handlers
         invert_button.addActionListener(handler);
         slow_gamma_button.addActionListener(handler);
         fast_gamma_button.addActionListener(handler);
@@ -105,7 +90,7 @@ public class Example extends JFrame {
         public void stateChanged(ChangeEvent e) {
 			System.out.println(val_slider.getValue());
 			//you could pass the value to another function to change something
-            //then update the image
+                        //then update the image
 		}
 
          public void actionPerformed(ActionEvent event) {
@@ -142,7 +127,7 @@ public class Example extends JFrame {
                 }else if (event.getSource()==open_file_Button) {
                         FileHelper fileChooser = new FileHelper(container);
                         selectedFile = fileChooser.openDialogue();
-                        InitialiseImage(selectedFile);
+                        ChangeImage(selectedFile);
                         }
          }
     }
@@ -256,7 +241,7 @@ public class Example extends JFrame {
             return image;
     }
 
-    public void InitialiseImage(File image_file){
+    public void ChangeImage(File image_file){
         try {
                 image = ImageIO.read(image_file);
                 image_icon.setIcon(new ImageIcon(image));
