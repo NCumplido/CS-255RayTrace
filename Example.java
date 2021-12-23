@@ -19,7 +19,8 @@ public class Example extends JFrame {
     correlate_button, 
     equal_button,
     open_file_Button,
-    btn_reset_image;
+    btn_reset_image,
+    btn_threshold;
     JLabel image_icon;
     BufferedImage image;
     JSlider val_slider;
@@ -61,6 +62,9 @@ public class Example extends JFrame {
 
         open_file_Button = new JButton("Open file");
         container.add(open_file_Button);
+
+        btn_threshold = new JButton("Threshold");
+        container.add(btn_threshold);
 		
 		val_slider = new JSlider(0,100);
 		container.add(val_slider);
@@ -83,6 +87,7 @@ public class Example extends JFrame {
         open_file_Button.addActionListener(handler);
         btn_reset_image.addActionListener(handler);
 	val_slider.addChangeListener(handler);
+        btn_threshold.addChangeListener(handler);
         // ... and display everything
         pack();
         setLocationRelativeTo(null);
@@ -138,6 +143,8 @@ public class Example extends JFrame {
                         ChangeImage(selectedFile);
                 } else if (event.getSource()==btn_reset_image) {
                         ResetImage();
+                } else if(event.getSource()==btn_threshold) {
+                        Threshold(image);
                 }
          }
     }
@@ -272,6 +279,25 @@ public class Example extends JFrame {
         }
 
     }
+
+    public BufferedImage Threshold(BufferedImage image) {
+        //Get image dimensions, and declare loop variables
+        int w=image.getWidth(), h=image.getHeight(), i, j, c;
+        //Obtain pointer to data for fast processing
+        byte[] data = GetImageData(image);
+        
+        //Shows how to loop through each pixel and colour
+        //Try to always use j for loops in y, and i for loops in x
+        //as this makes the code more readable
+        for (j=0; j<h; j++) {
+                for (i=0; i<w; i++) {
+                        for (c=0; c<3; c++) {
+                                data[c+3*i+3*j*w]=(byte) (255-(data[c+3*i+3*j*w]&255));
+                        } // colour loop
+                } // column loop
+        } // row loop
+        return image;
+        }
 
     public static void main(String[] args) throws IOException {
  
