@@ -26,6 +26,8 @@ public class Example extends JFrame {
         Container container = getContentPane();
         File selectedFile;
 
+        GUIEventHandler handler = new GUIEventHandler();
+
         final String DEFAULT_IMAGE_NAME = "raytrace.jpg";
 
         /*
@@ -35,9 +37,16 @@ public class Example extends JFrame {
 
                 initialiseImage();
                 initialiseGUI();
+                initialiseHandler();
 
-                GUIEventHandler handler = new GUIEventHandler();
+                // ... and display everything
+                pack();
+                setLocationRelativeTo(null);
+                setVisible(true);
 
+        }
+
+        private void initialiseHandler() {
                 invert_button.addActionListener(handler);
                 slow_gamma_button.addActionListener(handler);
                 fast_gamma_button.addActionListener(handler);
@@ -47,11 +56,6 @@ public class Example extends JFrame {
                 btn_reset_image.addActionListener(handler);
                 val_slider.addChangeListener(handler);
                 btn_threshold.addChangeListener(handler);
-                // ... and display everything
-                pack();
-                setLocationRelativeTo(null);
-                setVisible(true);
-
         }
 
         private void initialiseImage() {
