@@ -13,11 +13,14 @@ public class Example extends JFrame {
         final JButton BTN_INVERT = new JButton("Invert"),
                         BTN_SLOW_GAMMA = new JButton("Slow Gamma"),
                         BTN_FAST_GAMMA = new JButton("Fast Gamma"),
-                        BTN_CORRELATE = new JButton("Correlate"),
+                        //BTN_CORRELATE = new JButton("Correlate"),
                         BTN_EQUAL = new JButton("Equalize"),
                         BTN_OPEN_FILE = new JButton("Open file"),
                         BTN_RESET_IMAGE = new JButton("Reset Image"),
                         BTN_THRESHOLD = new JButton("Threshold");
+
+        String[] fadeOptions = {"Red", "Green", "Blue", "Grey"};
+        final JComboBox<String> CMBOBX_FADE = new JComboBox<>(fadeOptions);
 
         ImageProcessorFunctions imgProcFunct;
         BufferedImage image;
@@ -57,7 +60,7 @@ public class Example extends JFrame {
                 });
                 BTN_SLOW_GAMMA.addActionListener(handler);
                 BTN_FAST_GAMMA.addActionListener(handler);
-                BTN_CORRELATE.addActionListener(handler);
+                CMBOBX_FADE.addActionListener(handler);
                 BTN_EQUAL.addActionListener(handler);
                 BTN_OPEN_FILE.addActionListener(handler);
                 BTN_RESET_IMAGE.addActionListener(handler);
@@ -73,7 +76,7 @@ public class Example extends JFrame {
                 container.add(BTN_EQUAL);
                 container.add(BTN_SLOW_GAMMA);
                 container.add(BTN_FAST_GAMMA);
-                container.add(BTN_CORRELATE);
+                container.add(CMBOBX_FADE);
                 container.add(BTN_RESET_IMAGE);
                 container.add(BTN_OPEN_FILE);
                 container.add(BTN_THRESHOLD);
@@ -109,8 +112,8 @@ public class Example extends JFrame {
                         } else if (event.getSource() == BTN_FAST_GAMMA) {
                                 image_icon = imgProcFunct.FastGamma(image_icon);
 
-                        } else if (event.getSource() == BTN_CORRELATE) {
-                                image_icon = imgProcFunct.BlueFade(image_icon);
+                        // } else if (event.getSource() == BTN_CORRELATE) {
+                        //         image_icon = imgProcFunct.BlueFade(image_icon);
 
                         } else if (event.getSource() == BTN_EQUAL) {
                                 image_icon = imgProcFunct.Equalise(image_icon);
