@@ -51,7 +51,14 @@ public class Example extends JFrame {
         }
 
         private void initialiseHandler() {
-                BTN_INVERT.addActionListener(handler);
+                BTN_INVERT.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent ae) {
+                                image = Invert(image);
+                                // Update image
+                                image_icon.setIcon(new ImageIcon(image));                        }
+                    });
+                //BTN_INVERT.addActionListener(handler);
                 BT_SLOW_GAMMA.addActionListener(handler);
                 BTN_FAST_GAMMA.addActionListener(handler);
                 BTN_CORRELATE.addActionListener(handler);
@@ -109,13 +116,15 @@ public class Example extends JFrame {
                 }
 
                 public void actionPerformed(ActionEvent event) {
-                        if (event.getSource() == BTN_INVERT) {
-                                // Call image processing function
-                                image = Invert(image);
 
-                                // Update image
-                                image_icon.setIcon(new ImageIcon(image));
-                        } else if (event.getSource() == BT_SLOW_GAMMA) {
+                        // if (event.getSource() == BTN_INVERT) {
+                        //         // Call image processing function
+                        //         image = Invert(image);
+
+                        //         // Update image
+                        //         image_icon.setIcon(new ImageIcon(image));
+                        // } else 
+                        if (event.getSource() == BT_SLOW_GAMMA) {
                                 // Call image processing function
                                 image = SlowGamma(image);
 
