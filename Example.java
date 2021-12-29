@@ -43,6 +43,9 @@ public class Example extends JFrame {
                 pack();
                 setLocationRelativeTo(null);
                 setVisible(true);
+                this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                this.setUndecorated(true);
+                this.setVisible(true);
 
         }
 
