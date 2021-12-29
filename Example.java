@@ -12,14 +12,16 @@ import java.lang.Math.*;
 // I won't give extra marks for that though.
 public class Example extends JFrame {
 
-        JButton invert_button,
-                        slow_gamma_button,
-                        fast_gamma_button,
-                        correlate_button,
-                        equal_button,
-                        open_file_Button,
-                        btn_reset_image,
-                        btn_threshold;
+        final JButton                 
+        BTN_INVERT = new JButton("Invert"),
+        BT_SLOW_GAMMA = new JButton("Slow Gamma"),
+        BTN_FAST_GAMMA = new JButton("Fast Gamma"),
+        BTN_CORRELATE = new JButton("Correlate"),
+        BTN_EQUAL = new JButton("Equalize"),
+        BTN_OPEN_FILE = new JButton("Open file"),
+        BTN_RESET_IMAGE = new JButton("Reset Image"),
+        BTN_THRESHOLD = new JButton("Threshold");
+
         JLabel image_icon;
         BufferedImage image;
         JSlider val_slider;
@@ -46,19 +48,18 @@ public class Example extends JFrame {
                 this.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 this.setUndecorated(true);
                 this.setVisible(true);
-
         }
 
         private void initialiseHandler() {
-                invert_button.addActionListener(handler);
-                slow_gamma_button.addActionListener(handler);
-                fast_gamma_button.addActionListener(handler);
-                correlate_button.addActionListener(handler);
-                equal_button.addActionListener(handler);
-                open_file_Button.addActionListener(handler);
-                btn_reset_image.addActionListener(handler);
+                BTN_INVERT.addActionListener(handler);
+                BT_SLOW_GAMMA.addActionListener(handler);
+                BTN_FAST_GAMMA.addActionListener(handler);
+                BTN_CORRELATE.addActionListener(handler);
+                BTN_EQUAL.addActionListener(handler);
+                BTN_OPEN_FILE.addActionListener(handler);
+                BTN_RESET_IMAGE.addActionListener(handler);
                 val_slider.addChangeListener(handler);
-                btn_threshold.addChangeListener(handler);
+                BTN_THRESHOLD.addChangeListener(handler);
         }
 
         private void initialiseImage() {
@@ -75,22 +76,14 @@ public class Example extends JFrame {
                 container.setLayout(new FlowLayout());
                 image_icon = new JLabel(new ImageIcon(image));
                 container.add(image_icon);
-                invert_button = new JButton("Invert");
-                container.add(invert_button);
-                equal_button = new JButton("Equalize");
-                container.add(equal_button);
-                slow_gamma_button = new JButton("Slow Gamma");
-                container.add(slow_gamma_button);
-                fast_gamma_button = new JButton("Fast Gamma");
-                container.add(fast_gamma_button);
-                correlate_button = new JButton("Correlate");
-                container.add(correlate_button);
-                btn_reset_image = new JButton("Reset Image");
-                container.add(btn_reset_image);
-                open_file_Button = new JButton("Open file");
-                container.add(open_file_Button);
-                btn_threshold = new JButton("Threshold");
-                container.add(btn_threshold);
+                container.add(BTN_INVERT);
+                container.add(BTN_EQUAL);
+                container.add(BT_SLOW_GAMMA);
+                container.add(BTN_FAST_GAMMA);
+                container.add(BTN_CORRELATE);
+                container.add(BTN_RESET_IMAGE);
+                container.add(BTN_OPEN_FILE);
+                container.add(BTN_THRESHOLD);
 
                 val_slider = new JSlider(0, 100);
                 container.add(val_slider);
@@ -116,43 +109,43 @@ public class Example extends JFrame {
                 }
 
                 public void actionPerformed(ActionEvent event) {
-                        if (event.getSource() == invert_button) {
+                        if (event.getSource() == BTN_INVERT) {
                                 // Call image processing function
                                 image = Invert(image);
 
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));
-                        } else if (event.getSource() == slow_gamma_button) {
+                        } else if (event.getSource() == BT_SLOW_GAMMA) {
                                 // Call image processing function
                                 image = SlowGamma(image);
 
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));
-                        } else if (event.getSource() == fast_gamma_button) {
+                        } else if (event.getSource() == BTN_FAST_GAMMA) {
                                 // Call image processing function
                                 image = FastGamma(image);
 
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));
-                        } else if (event.getSource() == correlate_button) {
+                        } else if (event.getSource() == BTN_CORRELATE) {
                                 // Call image processing function
                                 image = BlueFade(image);
 
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));
-                        } else if (event.getSource() == equal_button) {
+                        } else if (event.getSource() == BTN_EQUAL) {
                                 // Call function
                                 image = Equalise(image);
 
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));
-                        } else if (event.getSource() == open_file_Button) {
+                        } else if (event.getSource() == BTN_OPEN_FILE) {
                                 FileHelper fileChooser = new FileHelper(container);
                                 selectedFile = fileChooser.openDialogue();
                                 ChangeImage(selectedFile);
-                        } else if (event.getSource() == btn_reset_image) {
+                        } else if (event.getSource() == BTN_RESET_IMAGE) {
                                 ResetImage();
-                        } else if (event.getSource() == btn_threshold) {
+                        } else if (event.getSource() == BTN_THRESHOLD) {
                                 Threshold(image);
                         }
                 }
