@@ -106,35 +106,25 @@ public class Example extends JFrame {
                 public void actionPerformed(ActionEvent event) {
 
                         if (event.getSource() == BTN_SLOW_GAMMA) {
-                                // Call image processing function
-                                image = imgProcFunct.SlowGamma();
+                                image_icon = imgProcFunct.SlowGamma(image_icon);
 
-                                // Update image
-                                image_icon.setIcon(new ImageIcon(image));
                         } else if (event.getSource() == BTN_FAST_GAMMA) {
-                                // Call image processing function
-                                image = imgProcFunct.FastGamma();
+                                image_icon = imgProcFunct.FastGamma(image_icon);
 
-                                // Update image
-                                image_icon.setIcon(new ImageIcon(image));
                         } else if (event.getSource() == BTN_CORRELATE) {
-                                // Call image processing function
-                                image = imgProcFunct.BlueFade();
+                                image_icon = imgProcFunct.BlueFade(image_icon);
 
-                                // Update image
-                                image_icon.setIcon(new ImageIcon(image));
                         } else if (event.getSource() == BTN_EQUAL) {
-                                // Call function
-                                image = imgProcFunct.Equalise();
+                                image_icon = imgProcFunct.Equalise(image_icon);
 
-                                // Update image
-                                image_icon.setIcon(new ImageIcon(image));
                         } else if (event.getSource() == BTN_OPEN_FILE) {
                                 FileHelper fileChooser = new FileHelper(container);
                                 selectedFile = fileChooser.openDialogue();
                                 image_icon = imgProcFunct.ChangeImage(selectedFile, image_icon);
+
                         } else if (event.getSource() == BTN_RESET_IMAGE) {
                                 image_icon = imgProcFunct.ResetImage(image_icon);
+
                         } else if (event.getSource() == BTN_THRESHOLD) {
                                 imgProcFunct.Threshold();
                         }

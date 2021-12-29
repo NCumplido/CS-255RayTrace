@@ -67,14 +67,15 @@ public class ImageProcessorFunctions {
         return null;
     }
 
-    public BufferedImage Equalise() {
+    public JLabel Equalise(JLabel image_icon) {
         // Get image dimensions, and declare loop variables
         int w = image.getWidth(), h = image.getHeight(), i, j, c;
         // Obtain pointer to data for fast processing
         byte[] data = GetImageData();
         int[] histogram;
 
-        return image;
+        image_icon.setIcon(new ImageIcon(image));
+        return image_icon;
     }
 
     /*
@@ -100,28 +101,31 @@ public class ImageProcessorFunctions {
                 } // colour loop
             } // column loop
         } // row loop
+
         image_icon.setIcon(new ImageIcon(image));
         return image_icon;
     }
 
-    public BufferedImage SlowGamma() {
+    public JLabel SlowGamma(JLabel image_icon) {
         // Get image dimensions, and declare loop variables
         int w = image.getWidth(), h = image.getHeight(), i, j, c;
         byte[] data = GetImageData();
 
-        return image;
+        image_icon.setIcon(new ImageIcon(image));
+        return image_icon;
     }
 
-    public BufferedImage FastGamma() {
+    public JLabel FastGamma(JLabel image_icon) {
         // Get image dimensions, and declare loop variables
         int w = image.getWidth(), h = image.getHeight(), i, j, c;
         byte[] data = GetImageData();
         // Obtain pointer to data for fast processing
 
-        return image;
+        image_icon.setIcon(new ImageIcon(image));
+        return image_icon;
     }
 
-    public BufferedImage BlueFade() {
+    public JLabel BlueFade(JLabel image_icon) {
         // Get image dimensions, and declare loop variables
         int w = image.getWidth(), h = image.getHeight(), i, j, c;
         // Obtain pointer to data for fast processing
@@ -159,7 +163,8 @@ public class ImageProcessorFunctions {
             } // column loop
         } // row loop
 
-        return image;
+        image_icon.setIcon(new ImageIcon(image));
+        return image_icon;
     }
 
     public BufferedImage Threshold() {
