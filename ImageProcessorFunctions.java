@@ -112,12 +112,12 @@ public class ImageProcessorFunctions {
         byte[] data = GetImageData();
 
         /*
-        • V=(I/a)1/ (assume a=1 for this course)
-        • Implementation: divide pixel by 255 (get I, a number between 0 and 1)
-        • Find power(I, 1.0/gamma)
-        • Multiply by 255 to get new intensity
-        • (Do for each colour channel, for each pixel)
-        */
+         * • V=(I/a)1/ (assume a=1 for this course)
+         * • Implementation: divide pixel by 255 (get I, a number between 0 and 1)
+         * • Find power(I, 1.0/gamma)
+         * • Multiply by 255 to get new intensity
+         * • (Do for each colour channel, for each pixel)
+         */
 
         image_icon.setIcon(new ImageIcon(image));
         return image_icon;
@@ -133,7 +133,7 @@ public class ImageProcessorFunctions {
         return image_icon;
     }
 
-    public JLabel BlueFade(JLabel image_icon) {
+    public JLabel BlueFade(JLabel image_icon, int selectedFade) {
         // Get image dimensions, and declare loop variables
         int w = image.getWidth(), h = image.getHeight(), i, j, c;
         // Obtain pointer to data for fast processing
@@ -154,11 +154,30 @@ public class ImageProcessorFunctions {
 
         // Now carry out processing on this different data typed image (e.g. correlation
         // or "bluefade"
+        int bFade = 0,
+                gFade = 0,
+                rFade = 0;
         for (j = 0; j < h; j++) {
             for (i = 0; i < w; i++) {
-                int_image[j][i][0] = 255 * j / h; // BLUE
-                int_image[j][i][1] = 255 * j / h; // GREEN
-                int_image[j][i][2] = 255 * j / h; // RED
+                switch (selectedFade) {
+                    case 0:
+                        rFade = 255 * j / h;
+                        break;
+                    case 1:
+                        gFade = 255 * j / h;
+                        break;
+                    case 2:
+                        bFade = 255 * j / h;
+                        break;
+                    case 3:
+                        rFade = 255 * j / h;
+                        gFade = 255 * j / h;
+                        bFade = 255 * j / h;
+                        break;
+                }
+                int_image[j][i][0] = bFade; // BLUE
+                int_image[j][i][1] = gFade; // GREEN
+                int_image[j][i][2] = rFade; // RED
             } // column loop
         } // row loop
 

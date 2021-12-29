@@ -128,6 +128,9 @@ public class Example extends JFrame {
 
                         } else if (event.getSource() == BTN_THRESHOLD) {
                                 imgProcFunct.Threshold();
+                        } else if (event.getSource() == CMBOBX_FADE){
+                                int selectedFade = CMBOBX_FADE.getSelectedIndex();
+                                image_icon = imgProcFunct.BlueFade(image_icon, selectedFade);
                         }
                 }
         }
