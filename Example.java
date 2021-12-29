@@ -22,8 +22,9 @@ public class Example extends JFrame {
         BTN_RESET_IMAGE = new JButton("Reset Image"),
         BTN_THRESHOLD = new JButton("Threshold");
 
-        JLabel image_icon;
+        ImageProcessorFunctions imgProcFunct;
         BufferedImage image;
+        JLabel image_icon;
         JSlider val_slider;
         Container container = getContentPane();
         File selectedFile;
@@ -36,8 +37,8 @@ public class Example extends JFrame {
          * This function sets up the GUI and reads an image
          */
         public void Example() {
-
-                initialiseImage();
+                imgProcFunct = new ImageProcessorFunctions();
+                image = imgProcFunct.image;
                 initialiseGUI();
                 initialiseHandler();
 
@@ -54,7 +55,7 @@ public class Example extends JFrame {
                 BTN_INVERT.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent ae) {
-                                image = Invert(image);
+                                image = imgProcFunct.Invert();
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));                        }
                     });
@@ -67,16 +68,6 @@ public class Example extends JFrame {
                 BTN_RESET_IMAGE.addActionListener(handler);
                 val_slider.addChangeListener(handler);
                 BTN_THRESHOLD.addChangeListener(handler);
-        }
-
-        private void initialiseImage() {
-                File image_file = new File(DEFAULT_IMAGE_NAME);
-                try {
-                        image = ImageIO.read(image_file);
-                } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }
         }
 
         private void initialiseGUI() {
@@ -126,191 +117,43 @@ public class Example extends JFrame {
                         // } else 
                         if (event.getSource() == BT_SLOW_GAMMA) {
                                 // Call image processing function
-                                image = SlowGamma(image);
+                                image = imgProcFunct.SlowGamma();
 
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));
                         } else if (event.getSource() == BTN_FAST_GAMMA) {
                                 // Call image processing function
-                                image = FastGamma(image);
+                                image = imgProcFunct.FastGamma();
 
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));
                         } else if (event.getSource() == BTN_CORRELATE) {
                                 // Call image processing function
-                                image = BlueFade(image);
+                                image = imgProcFunct.BlueFade();
 
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));
                         } else if (event.getSource() == BTN_EQUAL) {
                                 // Call function
-                                image = Equalise(image);
+                                image = imgProcFunct.Equalise();
 
                                 // Update image
                                 image_icon.setIcon(new ImageIcon(image));
                         } else if (event.getSource() == BTN_OPEN_FILE) {
                                 FileHelper fileChooser = new FileHelper(container);
                                 selectedFile = fileChooser.openDialogue();
-                                ChangeImage(selectedFile);
+                                image_icon = imgProcFunct.ChangeImage(selectedFile, image_icon);
                         } else if (event.getSource() == BTN_RESET_IMAGE) {
-                                ResetImage();
+                                image_icon = imgProcFunct.ResetImage(image_icon);
                         } else if (event.getSource() == BTN_THRESHOLD) {
-                                Threshold(image);
+                                imgProcFunct.Threshold();
                         }
                 }
         }
 
-        /*
-         * This function will return a pointer to an array
-         * of bytes which represent the image data in memory.
-         * Using such a pointer allows fast access to the image
-         * data for processing (rather than getting/setting
-         * individual pixels)
-         */
-        public static byte[] GetImageData(BufferedImage image) {
-                WritableRaster WR = image.getRaster();
-                DataBuffer DB = WR.getDataBuffer();
-                if (DB.getDataType() != DataBuffer.TYPE_BYTE)
-                        throw new IllegalStateException("That's not of type byte");
+        
 
-                return ((DataBufferByte) DB).getData();
-        }
 
-        public void ResetImage() {
-                File image_file = new File(DEFAULT_IMAGE_NAME);
-                try {
-                        image = ImageIO.read(image_file);
-                } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }
-                // image_icon=new JLabel(new ImageIcon(image));
-                image_icon.setIcon(new ImageIcon(image));
-        }
-
-        public BufferedImage Equalise(BufferedImage image) {
-                // Get image dimensions, and declare loop variables
-                int w = image.getWidth(), h = image.getHeight(), i, j, c;
-                // Obtain pointer to data for fast processing
-                byte[] data = GetImageData(image);
-                int[] histogram;
-
-                return image;
-        }
-
-        /*
-         * This function shows how to carry out an operation on an image.
-         * It obtains the dimensions of the image, and then loops through
-         * the image carrying out the invert.
-         */
-        public BufferedImage Invert(BufferedImage image) {
-                // Get image dimensions, and declare loop variables
-                int w = image.getWidth(), h = image.getHeight(), i, j, c;
-                // Obtain pointer to data for fast processing
-                byte[] data = GetImageData(image);
-
-                // Shows how to loop through each pixel and colour
-                // Try to always use j for loops in y, and i for loops in x
-                // as this makes the code more readable
-                for (j = 0; j < h; j++) {
-                        for (i = 0; i < w; i++) {
-                                for (c = 0; c < 3; c++) {
-                                        data[c + 3 * i + 3 * j * w] = (byte) (255
-                                                        - (data[c + 3 * i + 3 * j * w] & 255));
-                                } // colour loop
-                        } // column loop
-                } // row loop
-                return image;
-        }
-
-        public BufferedImage SlowGamma(BufferedImage image) {
-                // Get image dimensions, and declare loop variables
-                int w = image.getWidth(), h = image.getHeight(), i, j, c;
-                byte[] data = GetImageData(image);
-
-                return image;
-        }
-
-        public BufferedImage FastGamma(BufferedImage image) {
-                // Get image dimensions, and declare loop variables
-                int w = image.getWidth(), h = image.getHeight(), i, j, c;
-                byte[] data = GetImageData(image);
-                // Obtain pointer to data for fast processing
-
-                return image;
-        }
-
-        public BufferedImage BlueFade(BufferedImage image) {
-                // Get image dimensions, and declare loop variables
-                int w = image.getWidth(), h = image.getHeight(), i, j, c;
-                // Obtain pointer to data for fast processing
-                byte[] data = GetImageData(image);
-                int int_image[][][];
-                double t;
-
-                int_image = new int[h][w][3];
-
-                // Copy byte data to new image taking care to treat bytes as unsigned
-                for (j = 0; j < h; j++) {
-                        for (i = 0; i < w; i++) {
-                                for (c = 0; c < 3; c++) {
-                                        int_image[j][i][c] = data[c + 3 * i + 3 * j * w] & 255;
-                                } // colour loop
-                        } // column loop
-                } // row loop
-
-                // Now carry out processing on this different data typed image (e.g. correlation
-                // or "bluefade"
-                for (j = 0; j < h; j++) {
-                        for (i = 0; i < w; i++) {
-                                int_image[j][i][0] = 255 * j / h; // BLUE
-                                int_image[j][i][1] = 0; // GREEN
-                                int_image[j][i][2] = 0; // RED
-                        } // column loop
-                } // row loop
-
-                // Now copy the processed image back to the original
-                for (j = 0; j < h; j++) {
-                        for (i = 0; i < w; i++) {
-                                for (c = 0; c < 3; c++) {
-                                        data[c + 3 * i + 3 * j * w] = (byte) int_image[j][i][c];
-                                } // colour loop
-                        } // column loop
-                } // row loop
-
-                return image;
-        }
-
-        public void ChangeImage(File image_file) {
-                try {
-                        image = ImageIO.read(image_file);
-                        image_icon.setIcon(new ImageIcon(image));
-                } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }
-
-        }
-
-        public BufferedImage Threshold(BufferedImage image) {
-                // Get image dimensions, and declare loop variables
-                int w = image.getWidth(), h = image.getHeight(), i, j, c;
-                // Obtain pointer to data for fast processing
-                byte[] data = GetImageData(image);
-
-                // Shows how to loop through each pixel and colour
-                // Try to always use j for loops in y, and i for loops in x
-                // as this makes the code more readable
-                for (j = 0; j < h; j++) {
-                        for (i = 0; i < w; i++) {
-                                for (c = 0; c < 3; c++) {
-                                        data[c + 3 * i + 3 * j * w] = (byte) (255
-                                                        - (data[c + 3 * i + 3 * j * w] & 255));
-                                } // colour loop
-                        } // column loop
-                } // row loop
-                return image;
-        }
 
         public static void main(String[] args) throws IOException {
 
