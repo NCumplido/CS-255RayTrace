@@ -65,7 +65,7 @@ public class Example extends JFrame {
                 BTN_OPEN_FILE.addActionListener(handler);
                 BTN_RESET_IMAGE.addActionListener(handler);
                 val_slider.addChangeListener(handler);
-                BTN_THRESHOLD.addChangeListener(handler);
+                BTN_THRESHOLD.addActionListener(handler);
         }
 
         private void initialiseGUI() {
@@ -127,7 +127,7 @@ public class Example extends JFrame {
                                 image_icon = imgProcFunct.ResetImage(image_icon);
 
                         } else if (event.getSource() == BTN_THRESHOLD) {
-                                imgProcFunct.Threshold();
+                                image_icon = imgProcFunct.Threshold(image_icon);
                         } else if (event.getSource() == CMBOBX_FADE){
                                 int selectedFade = CMBOBX_FADE.getSelectedIndex();
                                 image_icon = imgProcFunct.BlueFade(image_icon, selectedFade);

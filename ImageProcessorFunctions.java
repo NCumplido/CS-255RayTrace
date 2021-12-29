@@ -194,7 +194,7 @@ public class ImageProcessorFunctions {
         return image_icon;
     }
 
-    public BufferedImage Threshold() {
+    public JLabel Threshold(JLabel image_icon) {
         // Get image dimensions, and declare loop variables
         int w = image.getWidth(), h = image.getHeight(), i, j, c;
         // Obtain pointer to data for fast processing
@@ -211,7 +211,9 @@ public class ImageProcessorFunctions {
                 } // colour loop
             } // column loop
         } // row loop
-        return image;
+
+        image_icon.setIcon(new ImageIcon(image));
+        return image_icon;
     }
 
 }
