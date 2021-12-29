@@ -1,11 +1,9 @@
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
-import javax.imageio.*;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.event.*;
-import java.lang.Math.*;
 
 // OK this is not best practice - maybe you'd like to extend
 // the BufferedImage class for the image processing operations?
@@ -106,7 +104,7 @@ public class Example extends JFrame {
                 public void actionPerformed(ActionEvent event) {
 
                         if (event.getSource() == BTN_SLOW_GAMMA) {
-                                image_icon = imgProcFunct.SlowGamma(image_icon);
+                                image_icon = imgProcFunct.SlowGamma(image_icon, val_slider.getValue());
 
                         } else if (event.getSource() == BTN_FAST_GAMMA) {
                                 image_icon = imgProcFunct.FastGamma(image_icon);
