@@ -12,15 +12,14 @@ import java.lang.Math.*;
 // I won't give extra marks for that though.
 public class Example extends JFrame {
 
-        final JButton                 
-        BTN_INVERT = new JButton("Invert"),
-        BT_SLOW_GAMMA = new JButton("Slow Gamma"),
-        BTN_FAST_GAMMA = new JButton("Fast Gamma"),
-        BTN_CORRELATE = new JButton("Correlate"),
-        BTN_EQUAL = new JButton("Equalize"),
-        BTN_OPEN_FILE = new JButton("Open file"),
-        BTN_RESET_IMAGE = new JButton("Reset Image"),
-        BTN_THRESHOLD = new JButton("Threshold");
+        final JButton BTN_INVERT = new JButton("Invert"),
+                        BTN_SLOW_GAMMA = new JButton("Slow Gamma"),
+                        BTN_FAST_GAMMA = new JButton("Fast Gamma"),
+                        BTN_CORRELATE = new JButton("Correlate"),
+                        BTN_EQUAL = new JButton("Equalize"),
+                        BTN_OPEN_FILE = new JButton("Open file"),
+                        BTN_RESET_IMAGE = new JButton("Reset Image"),
+                        BTN_THRESHOLD = new JButton("Threshold");
 
         ImageProcessorFunctions imgProcFunct;
         BufferedImage image;
@@ -40,7 +39,7 @@ public class Example extends JFrame {
                 imgProcFunct = new ImageProcessorFunctions();
                 image = imgProcFunct.image;
                 initialiseGUI();
-                initialiseHandler();
+                initialiseListeners();
 
                 // ... and display everything
                 pack();
@@ -51,16 +50,14 @@ public class Example extends JFrame {
                 this.setVisible(true);
         }
 
-        private void initialiseHandler() {
+        private void initialiseListeners() {
                 BTN_INVERT.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent ae) {
-                                image = imgProcFunct.Invert();
-                                // Update image
-                                image_icon.setIcon(new ImageIcon(image));                        }
-                    });
-                //BTN_INVERT.addActionListener(handler);
-                BT_SLOW_GAMMA.addActionListener(handler);
+                                image_icon = imgProcFunct.Invert(image_icon);
+                        }
+                });
+                BTN_SLOW_GAMMA.addActionListener(handler);
                 BTN_FAST_GAMMA.addActionListener(handler);
                 BTN_CORRELATE.addActionListener(handler);
                 BTN_EQUAL.addActionListener(handler);
@@ -76,7 +73,7 @@ public class Example extends JFrame {
                 container.add(image_icon);
                 container.add(BTN_INVERT);
                 container.add(BTN_EQUAL);
-                container.add(BT_SLOW_GAMMA);
+                container.add(BTN_SLOW_GAMMA);
                 container.add(BTN_FAST_GAMMA);
                 container.add(BTN_CORRELATE);
                 container.add(BTN_RESET_IMAGE);
@@ -108,14 +105,7 @@ public class Example extends JFrame {
 
                 public void actionPerformed(ActionEvent event) {
 
-                        // if (event.getSource() == BTN_INVERT) {
-                        //         // Call image processing function
-                        //         image = Invert(image);
-
-                        //         // Update image
-                        //         image_icon.setIcon(new ImageIcon(image));
-                        // } else 
-                        if (event.getSource() == BT_SLOW_GAMMA) {
+                        if (event.getSource() == BTN_SLOW_GAMMA) {
                                 // Call image processing function
                                 image = imgProcFunct.SlowGamma();
 
@@ -150,10 +140,6 @@ public class Example extends JFrame {
                         }
                 }
         }
-
-        
-
-
 
         public static void main(String[] args) throws IOException {
 
