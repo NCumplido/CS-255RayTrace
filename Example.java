@@ -13,7 +13,6 @@ public class Example extends JFrame {
         final JButton BTN_INVERT = new JButton("Invert"),
                         BTN_SLOW_GAMMA = new JButton("Slow Gamma"),
                         BTN_FAST_GAMMA = new JButton("Fast Gamma"),
-                        //BTN_CORRELATE = new JButton("Correlate"),
                         BTN_EQUAL = new JButton("Equalize"),
                         BTN_OPEN_FILE = new JButton("Open file"),
                         BTN_RESET_IMAGE = new JButton("Reset Image"),

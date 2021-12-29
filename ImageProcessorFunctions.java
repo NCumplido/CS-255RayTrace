@@ -195,25 +195,7 @@ public class ImageProcessorFunctions {
     }
 
     public JLabel Threshold(JLabel image_icon) {
-        // Get image dimensions, and declare loop variables
-        int w = image.getWidth(), h = image.getHeight(), i, j, c;
-        // Obtain pointer to data for fast processing
-        byte[] data = GetImageData();
-
-        // Shows how to loop through each pixel and colour
-        // Try to always use j for loops in y, and i for loops in x
-        // as this makes the code more readable
-        for (j = 0; j < h; j++) {
-            for (i = 0; i < w; i++) {
-                for (c = 0; c < 3; c++) {
-                    data[c + 3 * i + 3 * j * w] = (byte) (255
-                            - (data[c + 3 * i + 3 * j * w] & 255));
-                } // colour loop
-            } // column loop
-        } // row loop
-
-        image_icon.setIcon(new ImageIcon(image));
-        return image_icon;
+       return null;
     }
 
 }
