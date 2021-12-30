@@ -35,7 +35,7 @@ public class Example extends JFrame {
         /*
          * This function sets up the GUI and reads an image
          */
-        public void Example() {
+        public void Initialise() {
                 imgProcFunct = new ImageProcessorFunctions();
                 image = imgProcFunct.image;
                 initialiseGUI();
@@ -138,7 +138,7 @@ public class Example extends JFrame {
 
                 Example e = new Example();
                 e.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                e.Example();
+                e.Initialise();
 
                 SwingUtilities.invokeLater(new Runnable() {
                         @Override

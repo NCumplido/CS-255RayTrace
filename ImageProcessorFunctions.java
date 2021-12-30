@@ -67,12 +67,12 @@ public class ImageProcessorFunctions {
         return null;
     }
 
-    public JLabel Equalise(JLabel image_icon) {
-        // Get image dimensions, and declare loop variables
-        int w = image.getWidth(), h = image.getHeight(), i, j, c;
-        // Obtain pointer to data for fast processing
-        byte[] data = GetImageData();
-        int[] histogram;
+    public JLabel Equalise(JLabel image_icon) {// ToDo: Implement
+        // // Get image dimensions, and declare loop variables
+        // int w = image.getWidth(), h = image.getHeight(), i, j, c;
+        // // Obtain pointer to data for fast processing
+        // byte[] data = GetImageData();
+        // int[] histogram;
 
         image_icon.setIcon(new ImageIcon(image));
         return image_icon;
@@ -106,11 +106,7 @@ public class ImageProcessorFunctions {
         return image_icon;
     }
 
-    public JLabel SlowGamma(JLabel image_icon, int gammaValue) {
-        // Get image dimensions, and declare loop variables
-        int w = image.getWidth(), h = image.getHeight(), i, j, c;
-        byte[] data = GetImageData();
-
+    public JLabel SlowGamma(JLabel image_icon, int gammaValue) { // ToDo: Implement
         /*
          * • V=(I/a)1/ (assume a=1 for this course)
          * • Implementation: divide pixel by 255 (get I, a number between 0 and 1)
@@ -119,15 +115,32 @@ public class ImageProcessorFunctions {
          * • (Do for each colour channel, for each pixel)
          */
 
+        // Get image dimensions, and declare loop variables
+        int w = image.getWidth(), h = image.getHeight(), i, j, c;
+        // Obtain pointer to data for fast processing
+        byte[] data = GetImageData();
+
+        // Shows how to loop through each pixel and colour
+        // Try to always use j for loops in y, and i for loops in x
+        // as this makes the code more readable
+        for (j = 0; j < h; j++) {
+            for (i = 0; i < w; i++) {
+                for (c = 0; c < 3; c++) {
+                    data[c + 3 * i + 3 * j * w] = (byte) (255
+                            - (data[c + 3 * i + 3 * j * w] & 255));
+                } // colour loop
+            } // column loop
+        } // row loop
+
         image_icon.setIcon(new ImageIcon(image));
         return image_icon;
     }
 
-    public JLabel FastGamma(JLabel image_icon) {
-        // Get image dimensions, and declare loop variables
-        int w = image.getWidth(), h = image.getHeight(), i, j, c;
-        byte[] data = GetImageData();
-        // Obtain pointer to data for fast processing
+    public JLabel FastGamma(JLabel image_icon) { // ToDo: Implement
+        // // Get image dimensions, and declare loop variables
+        // int w = image.getWidth(), h = image.getHeight(), i, j, c;
+        // byte[] data = GetImageData();
+        // // Obtain pointer to data for fast processing
 
         image_icon.setIcon(new ImageIcon(image));
         return image_icon;
@@ -139,7 +152,7 @@ public class ImageProcessorFunctions {
         // Obtain pointer to data for fast processing
         byte[] data = GetImageData();
         int int_image[][][];
-        double t;
+        //double t;
 
         int_image = new int[h][w][3];
 
@@ -195,7 +208,6 @@ public class ImageProcessorFunctions {
     }
 
     public JLabel Threshold(JLabel image_icon) {
-       return null;
+        return image_icon;
     }
-
 }
